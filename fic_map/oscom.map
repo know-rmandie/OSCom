@@ -1,0 +1,236 @@
+MAP
+    NAME "OS Communale 2015"
+    SIZE 800 800
+    UNITS METERS
+    IMAGECOLOR 255 255 255
+    TRANSPARENT ON
+	EXTENT 562642 6929423.5 565979.9375 6932458
+
+
+    WEB
+  	IMAGEPATH "tmp/"
+  	IMAGEURL "tmp/"
+    END
+
+    OUTPUTFORMAT
+  	NAME png
+  	DRIVER "GD/PNG"
+  	MIMETYPE "image/png"
+  	IMAGEMODE PC256
+  	EXTENSION "png"
+    END
+
+	SCALEBAR
+	  IMAGECOLOR 255 255 255
+	  LABEL
+	  	COLOR 0 0 0
+		SIZE TINY
+	  END
+	  STYLE 1
+	  SIZE 167 3
+	  COLOR 0 0 0
+	  UNITS KILOMETERS
+	  INTERVALS 3
+	  TRANSPARENT TRUE
+	  STATUS EMBED
+	  POSITION LL
+	END
+
+    LAYER
+        NAME 'oscom'
+		TYPE POLYGON
+	 	STATUS ON
+		CONNECTIONTYPE POSTGIS
+	 	CONNECTION  "user=user_name dbname=bd_name host=ip_or_url port=port_number password=user_password"
+		DATA "the_geom from (select * from oscom.oscom_perso2009_0 where insee_comm='76095') as foo1 using unique id_enr using srid=2154"
+
+        CLASSITEM 'code_oscom'
+
+        CLASS
+              NAME "11 - Zones urbanisées et bâties"
+              EXPRESSION ("[code_oscom]" = "11")
+               STYLE
+                 WIDTH 0.91
+                 OUTLINECOLOR 0 0 0
+                 COLOR 230 0 77
+               END
+         END
+
+		CLASS
+              NAME "12 - Zones industr/commerc, réseaux de comm, gds équipements"
+              EXPRESSION ("[code_oscom]" = "12")
+               STYLE
+                 WIDTH 0.91
+                 OUTLINECOLOR 0 0 0
+                 COLOR 204 77 242
+               END
+         END
+
+		CLASS
+              NAME "13 - Mines, décharges, dépôts et chantiers"
+              EXPRESSION ("[code_oscom]" = "13")
+               STYLE
+                 WIDTH 0.91
+                 OUTLINECOLOR 0 0 0
+                 COLOR 166 0 204
+               END
+         END
+
+		CLASS
+              NAME "14 - Espaces verts artificialisés non agricoles"
+              EXPRESSION ("[code_oscom]" = "14")
+               STYLE
+                 WIDTH 0.91
+                 OUTLINECOLOR 0 0 0
+				 COLOR 255 166 255
+                 # COLOR 170 170 170
+               END
+         END
+
+		CLASS
+              NAME "15 - Espaces non bâtis en attente de requalification"
+              EXPRESSION ("[code_oscom]" = "15")
+               STYLE
+                 WIDTH 0.91
+                 OUTLINECOLOR 0 0 0
+                 COLOR 205 205 205
+               END
+         END
+
+		CLASS
+              NAME "20 - Terres agricoles mixtes"
+              EXPRESSION ("[code_oscom]" = "20")
+               STYLE
+                 WIDTH 0.91
+                 OUTLINECOLOR 0 0 0
+                 COLOR 170 170 0
+               END
+         END
+
+
+		CLASS
+              NAME "21 - Terres arables"
+              EXPRESSION ("[code_oscom]" = "21")
+               STYLE
+                 WIDTH 0.91
+                 OUTLINECOLOR 0 0 0
+                 COLOR 255 255 168
+               END
+         END
+
+
+		CLASS
+              NAME "22 - Cultures permanentes"
+              EXPRESSION ("[code_oscom]" = "22")
+               STYLE
+                 WIDTH 0.91
+                 OUTLINECOLOR 0 0 0
+                 COLOR 230 128 0
+               END
+         END
+
+
+		CLASS
+              NAME "23 - Prairies"
+              EXPRESSION ("[code_oscom]" = "23")
+               STYLE
+                 WIDTH 0.91
+                 OUTLINECOLOR 0 0 0
+                 COLOR 230 230 77
+               END
+         END
+
+		CLASS
+              NAME "24 - Autres terres agricoles"
+              EXPRESSION ("[code_oscom]" = "24")
+               STYLE
+                 WIDTH 0.91
+                 OUTLINECOLOR 0 0 0
+                 COLOR 255 230 166
+               END
+         END
+
+		CLASS
+              NAME "30 - Milieux semi-naturels"
+              EXPRESSION ("[code_oscom]" = "30")
+               STYLE
+                 WIDTH 0.91
+                 OUTLINECOLOR 0 0 0
+                 COLOR 0 90 0
+               END
+         END
+
+		CLASS
+              NAME "31 - Forêts, bois, bosquets"
+              EXPRESSION ("[code_oscom]" = "31")
+               STYLE
+                 WIDTH 0.91
+                 OUTLINECOLOR 0 0 0
+                 COLOR 128 255 0
+               END
+         END
+
+		CLASS
+              NAME "32 - Milieu à végétation arbustive et/ou herbacée"
+              EXPRESSION ("[code_oscom]" = "32")
+               STYLE
+                 WIDTH 0.91
+                 OUTLINECOLOR 0 0 0
+                 COLOR 204 242 077
+               END
+         END
+
+		CLASS
+              NAME "51 - Eaux continentales"
+              EXPRESSION ("[code_oscom]" = "51")
+               STYLE
+                 WIDTH 0.91
+                 OUTLINECOLOR 0 0 0
+                 COLOR 0 204 242
+               END
+         END
+
+		CLASS
+              NAME "Espaces mixtes (src Majic)"
+              EXPRESSION ("[code_oscom]" = "00")
+               STYLE
+                 WIDTH 0.91
+                 OUTLINECOLOR 0 0 0
+                 COLOR 100 100 100
+               END
+         END
+
+		CLASS
+              NAME 'Zones à débattre'
+              # EXPRESSION ''
+			  EXPRESSION ("[code_oscom]" = "99")
+               STYLE
+                 WIDTH 0.91
+                 OUTLINECOLOR 0 0 0
+                 COLOR 255 0 0
+               END
+         END
+
+		 CLASS
+              NAME 'Indéterminé'
+              # EXPRESSION ''
+			  EXPRESSION ("[code_oscom]" = "??")
+               STYLE
+                 WIDTH 0.91
+                 OUTLINECOLOR 0 0 0
+                 COLOR 255 244 213
+               END
+         END
+
+		 CLASS
+              NAME 'Zones non traitées'
+              # EXPRESSION ''
+			  EXPRESSION (("[code_oscom]" = "") AND ([id_enr]>0))
+               STYLE
+                 WIDTH 0.91
+                 OUTLINECOLOR 0 0 0
+                 COLOR 255 255 255
+               END
+         END
+ 	END
+END

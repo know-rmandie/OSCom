@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
+		<link rel="stylesheet" href="css/main.css" />	
+		<script src="js/jquery-1.12.0.min.js" charset="utf-8"></script> 
+		<script src="js/initialisation.js" charset="utf-8"></script> 	
+		<script src="js/fonct_appels_php.js" charset="utf-8"></script> 	
+		<script src="js/fonct_onglets.js" charset="utf-8"></script> 	
+		<script src="js/fonct_menus_deroulants.js" charset="utf-8"></script> 		
+		<script>
+			$(document).ready(function(){
+				onglet_01(anc_onglet_01) ;
+				onglet_02(anc_onglet_02) ;
+				var liste_annee = '';
+				tab_parametre = get_tab_parametre();
+				for (i in tab_parametre) {
+					liste_annee += '<option value="'+ i+'">'+i +'</option>'+"\n";
+					}
+				$('#annee').html(liste_annee);				
+			
+			});
+		</script>
+		<title>OSCOM 2016</title>
+	</head>
+
+<body>
+<div class="container">
+	<header class="cadre-bandeau-haut">
+		OSCOM 2016
+		 <div id="id_millesime" class="cl_millesime" onchange="mes_perimetres()">								
+			<select name="annee" id="annee"></select>
+		</div>
+	</header>
+	<section class="cadre-centre">
+		<section class="cadre-interne-gauche">
+			<nav>
+					<ul>
+						<li id="Internet" onclick="javascript:onglet_01(this)"><a>Internet</a></li>
+						<li id="Intranet" onclick="javascript:onglet_01(this)"><a>Intranet</a></li>
+						<li id="Evolution" onclick="javascript:onglet_01(this)"><a>Evolution</a></li>
+						<li id="metadonnees" onclick="javascript:onglet_01(this)"><a>Métadonneés</a></li>
+						<li style="float:right" id="explication" onclick="javascript:onglet_01(this)"><a>Mode d'emploi</a></li>						
+					</ul>
+			</nav>
+			<div>
+					<div class="panneau-masque" id="panneau-Internet"><p>Page internet</p></div>
+					<div class="panneau-masque" id="panneau-Intranet">page intranet</div>
+					<div class="panneau-masque" id="panneau-Evolution">page évolution</div>
+					<div class="panneau-masque" id="panneau-metadonnees">page Métadonnées</div>
+					<div class="panneau-masque" id="panneau-explication">page Mode d'emploi</div>
+			</div>
+		</section>	
+		<section class="cadre-interne-droit">
+			<div id="tableaux">
+				Tableaux des valeurs
+			</div>
+			<div id="menus">
+				<nav>
+						<ul>
+							<li id="legende" onclick="javascript:onglet_02(this)"><a>Légende</a></li>
+							<li id="source" onclick="javascript:onglet_02(this)"><a>Source</a></li>
+							<li id="newperimetre" onclick="javascript:onglet_02(this)"><a>Nouveau périmètre</a></li>
+							<li id="graphiques" onclick="javascript:onglet_02(this)"><a>Graphiques</a></li>
+							<li id="comparaisons" onclick="javascript:onglet_02(this)"><a>Comparer</a></li>
+							<li style="float:right" id="contacts" onclick="javascript:onglet_02(this)"><a>Contacts</a></li>						
+						</ul>
+				</nav>
+				<div>
+						<div class="panneau-masque" id="panneau-legende"><p>Page legende</p></div>
+						<div class="panneau-masque" id="panneau-source">page sources</div>
+						<div class="panneau-masque" id="panneau-newperimetre">page Nouveau périmètre</div>
+						<div class="panneau-masque" id="panneau-graphiques">page graphiques</div>
+						<div class="panneau-masque" id="panneau-comparaisons">page comparaisons</div>
+						<div class="panneau-masque" id="panneau-contacts">page contacts</div>
+				</div>
+			</div>
+		</section>
+	</section>
+	<footer class="cadre-bandeau-bas">
+	bandeau bas
+	</footer>
+</body>
+	<script src="js/initialisation.js" charset="utf-8"></script>  
+</html> 
